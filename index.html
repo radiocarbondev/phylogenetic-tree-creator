@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    * {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: black;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        right: 50px;
+      }
+      #toolbar {
+        position: absolute;
+        right: 0%;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+      }
+      #toolbar button {
+        position: relative;
+        width: 100%;
+        background: #232323;
+        outline: none;
+        border: 1px solid grey;
+        font-family: sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        color: #F7F7F7;
+        padding: 10px;
+      }
+      #toolbar button:active {
+        background: black;
+      }
+
+      #toolbar2 {
+        background: black;
+        margin: 0%;
+        width: 97.5%;
+        height: 5%;
+        position: absolute;
+        top: 95%;
+        display: flex;
+        flex-direction: row;
+      }
+      .bar {
+        background: black;
+        position: absolute;
+        display: flex;
+        top: 0%;
+        height: 5%;
+        width: 97.5%;
+        margin: 0;
+        padding: 2%;
+      }
+      .activated {
+        background: black;
+      }
+      #toolbar1 {
+        background: black;
+        position: absolute;
+        display: flex;
+        top: 0%;
+        height: 3%;
+        width: 97.5%;
+        margin: 0;
+        padding: 2%;
+        color: white;
+      }
+      button {
+        outline: none;
+        border: none;
+        background: #18191c;
+        margin: 3px;
+        padding: 5px;
+        color: white;
+        cursor: pointer;
+      }
+      label {
+        outline: none;
+        border: none;
+        background: #18191c;
+        margin: 3px;
+        padding: 5px;
+        color: white;
+        cursor: pointer;
+      }
+      input[type=number] {
+        outline: none;
+        border: none;
+        background: #18191c;
+        margin: 0px;
+        padding: 5px;
+        color: white;
+      }
+      input[type=text] {
+        outline: none;
+        border: none;
+        background: #18191c;
+        margin: 0px;
+        padding: 5px;
+        color: white;
+      }
+      #tabs {
+        background: none;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      #contextMenu nav {
+        color: white;
+      }
+      #toolbar3 {
+        padding: 30px;
+        background: black;
+        position: absolute;
+        left: -200px;
+        width: 140px;
+        height: 100%;
+        transition: .5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <div id="toolbar1">
+      <button type="button" id="filesBtn">files</button>
+      <button type="button" id="saveBtn">save</button>
+      <button type="button" id="exportBtn">export to JSON</button>
+      <label for="importBtn">import .JSON file</label>
+      <input type="file" id="importBtn" style="display:none;">
+    </div>
+    <div id="toolbar">
+      <button id="selectBtn"><img src="./assets/pointer.png" width="100%" height="100%" title="Select (s)"></button>
+      <button id="lineBtn"><img src="./assets/draw.png" width="100%" height="100%" title="Draw Lines (l)"></button>
+      <button id="textBtn"><img src="./assets/text.png" width="100%" height="100%" title="Create Text (t)"></button>
+      <button id="deleteBtn"><img src="./assets/garbage.png" width="100%" height="100%" title="Delete Objects (d)"></button>
+    </div>
+    <div id="toolbar2">
+      <input type="number" style="width:100px;margin:10px;" id="xOffsetInput">
+      <input type="number" style="width:100px;margin:10px;" id="yOffsetInput">
+      <input type="range" value="100" id="scaleInput" min="10" max="200">
+    </div>
+    <div id="toolbar3">
+      <div class="tools">
+        <button type="button" id="filesBackBtn">[<]</button>
+        <button type="button" id="newFileBtn">[+]</button>
+      </div>
+      <div id="tabs">
+
+      </div>
+    </div>
+    <div id="contextMenu" style="display: none;background:black;position:absolute;">
+      <nav>
+        <ul>
+          <li>item one</li>
+          <li>item two</li>
+        </ul>
+      </nav>
+    </div>
+    <script src="canvas.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
