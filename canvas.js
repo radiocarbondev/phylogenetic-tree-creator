@@ -443,14 +443,15 @@ addEventListener('mousedown', e => {
 
     file.lines.forEach((lineItem,i) => {
       if(dist(convertX(lineItem.startX),convertY(lineItem.startY),e.clientX,e.clientY)<=10){
-        if (selection.selectionMode==='delete') file.lines.splice(i,1); return;
+        if (selection.selectionMode==='delete') {file.lines.splice(i,1); return;}
+        console.log('go');
         selection.selectItem.selectedList = 0;
         selection.selectItem.selectedIndex = i;
         selection.selectItem.selectedSide = 0;
         selection.selectItem.selecting = true;
       }
       if(dist(convertX(lineItem.endX),convertY(lineItem.endY),e.clientX,e.clientY)<=10){
-        if (selection.selectionMode==='delete') file.lines.splice(i,1); return;
+        if (selection.selectionMode==='delete') {file.lines.splice(i,1); return;}
         selection.selectItem.selectedList = 0;
         selection.selectItem.selectedIndex = i;
         selection.selectItem.selectedSide = 1;
@@ -460,7 +461,7 @@ addEventListener('mousedown', e => {
 
     file.textBoxes.forEach((textItem,i) => {
       if (isPointInside(e.clientX,e.clientY,textItem.x,textItem.y,textItem.box.width,textItem.box.height)) {
-        if (selection.selectionMode==='delete') file.textBoxes.splice(i,1); return;
+        if (selection.selectionMode==='delete') {file.textBoxes.splice(i,1); return;}
         selection.selectItem.selectedList = 1;
         selection.selectItem.selectedIndex = i;
         selection.selectItem.selectedSide = -1;
@@ -469,11 +470,12 @@ addEventListener('mousedown', e => {
         selection.selectItem.selecting = true;
       }
     });
-    if (selection.selectItem.selectedList<0) {
-      selection.wheel.wheelDown = true;
-      selection.wheel.pivotX = e.clientX;
-      selection.wheel.pivotY = e.clientY;
-    }
+    // if (selection.selectItem.selectedList<0) {
+    //   selection.wheel.wheelDown = true;
+    //   selection.wheel.pivotX = e.clientX;
+    //   selection.wheel.pivotY = e.clientY;
+    //   console.log('go');
+    // }
   }
 });
 addEventListener('mouseup', e => {
