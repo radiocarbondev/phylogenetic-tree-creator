@@ -409,6 +409,8 @@ addEventListener('mousemove', e => {
 });
 addEventListener('mousedown', e => {
   if (!mouseIsOnCanvas) return;
+  selection.selectItem.selecting = false;
+  selection.selectItem.selectedList = -1;
   selection.selectItem.typing = false;
   contextMenu.style.display = 'none';
   if (e.which == 2) {
@@ -444,11 +446,11 @@ addEventListener('mousedown', e => {
     file.lines.forEach((lineItem,i) => {
       if(dist(convertX(lineItem.startX),convertY(lineItem.startY),e.clientX,e.clientY)<=10){
         if (selection.selectionMode==='delete') {file.lines.splice(i,1); return;}
-        console.log('go');
         selection.selectItem.selectedList = 0;
         selection.selectItem.selectedIndex = i;
         selection.selectItem.selectedSide = 0;
         selection.selectItem.selecting = true;
+        return;
       }
       if(dist(convertX(lineItem.endX),convertY(lineItem.endY),e.clientX,e.clientY)<=10){
         if (selection.selectionMode==='delete') {file.lines.splice(i,1); return;}
@@ -456,6 +458,7 @@ addEventListener('mousedown', e => {
         selection.selectItem.selectedIndex = i;
         selection.selectItem.selectedSide = 1;
         selection.selectItem.selecting = true;
+        return;
       }
     });
 
@@ -468,14 +471,14 @@ addEventListener('mousedown', e => {
         selection.selectItem.pivotX = deconvertX(selection.mouse.x) - textItem.x;
         selection.selectItem.pivotY = deconvertY(selection.mouse.y) - textItem.y;
         selection.selectItem.selecting = true;
+        return;
       }
     });
-    // if (selection.selectItem.selectedList<0) {
-    //   selection.wheel.wheelDown = true;
-    //   selection.wheel.pivotX = e.clientX;
-    //   selection.wheel.pivotY = e.clientY;
-    //   console.log('go');
-    // }
+  }
+  if (!selection.selectItem.selecting) {
+    selection.wheel.wheelDown = true;
+    selection.wheel.pivotX = e.clientX;
+    selection.wheel.pivotY = e.clientY;
   }
 });
 addEventListener('mouseup', e => {
